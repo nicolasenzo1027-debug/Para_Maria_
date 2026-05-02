@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Maria Santos</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Google Fonts for architectural look and readable text -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredericka+the+Great&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Panel 1 -->
+    <div id="panel1" class="panel active">
+        <div class="overlay"></div>
+        <button id="btn-maria" class="square-btn">Maria Santos</button>
+    </div>
+
+    <!-- Panel 2 -->
+    <div id="panel2" class="panel hidden">
+        <div class="panel2-content">
+            <!-- Image loaded first -->
+            <img src="mariasantosimagen.jpg" alt="Maria Santos" class="maria-img">
+            
+            <!-- Hidden elements that appear after 2 seconds -->
+            <div id="delayed-content" class="hidden-delayed">
+                <h1 class="architect-font">Feliz Cumpleaños Maria</h1>
+                
+                <div class="envelope-wrapper" id="envelope-wrapper">
+                    <div id="envelope" class="envelope">
+                        <div class="flap"></div>
+                        <div class="pocket"></div>
+                        <div class="letter">
+                            <div class="letter-content">
+                                <p>Hola María, feliz cumpleaños<br><br>
+                                Que lo pases bien en tu cumpleaños y espero que disfrutes con tu familia y amigos. Este es mi regalo por muy cutre que parezca, he intentado hacerte algo diferente, aunque se que hubieras preferido las Air Force One de nike, aunque me hubieras dicho ¡¡Nico que haces gastandote tanto dinero!! (dirias algo asi, mas o menos)<br><br>
+                                P.D: Disfruta de tu cumpleaños, ya me contarás qué tal te ha ido, un abrazo</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Boton rojo fijado a la derecha -->
+        <div class="red-button-fixed">
+            <img src="cotilla_imagen.jpg" alt="Imagen Cotilla" id="cotilla-img" class="hidden-img">
+            <p id="cotilla-text" class="hidden-text">deja de ser tan cotilla</p>
+            <button id="btn-red" class="red-btn">No tocar</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

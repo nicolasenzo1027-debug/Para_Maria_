@@ -1,0 +1,277 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    width: 100%;
+    height: 100%;
+    font-family: 'Inter', sans-serif;
+    background-color: #000;
+    color: #fff;
+    overflow-x: hidden;
+}
+
+.architect-font {
+    font-family: 'Fredericka the Great', cursive;
+}
+
+.panel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 1s ease-in-out, visibility 1s ease-in-out;
+}
+
+.panel.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.panel.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+}
+
+/* Panel 1 */
+#panel1 {
+    background-image: url('wallpaperbetter.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Dim the background to make button pop */
+    z-index: 1;
+}
+
+.square-btn {
+    position: relative;
+    z-index: 2;
+    background-color: #fff; /* Fondo blanco */
+    color: #000; /* Letras negras */
+    border: 4px solid #fff;
+    padding: 3rem;
+    font-size: 3rem;
+    font-family: 'Fredericka the Great', cursive;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.square-btn:hover {
+    background-color: #000;
+    color: #fff;
+    border-color: #000;
+}
+
+/* Panel 2 */
+#panel2 {
+    background-color: #000;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0; /* Quitamos padding para que la imagen toque los bordes arriba */
+    overflow-y: auto;
+}
+
+.panel2-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 100%; /* Permitir que la imagen ocupe todo el ancho */
+    margin-top: 0;
+}
+
+.maria-img {
+    width: 100%;
+    height: 100vh; /* Ocupar el 100% de la altura de la pantalla visible */
+    object-fit: contain; /* Mostrar imagen completa sin salirse ni recortarse */
+    background-color: #000;
+    margin-bottom: 3rem;
+}
+
+.hidden-delayed {
+    opacity: 0;
+    transition: opacity 1s ease-in;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 0 1rem; /* Añadir padding a los lados para que el texto no se pegue */
+    max-width: 800px;
+}
+
+.hidden-delayed.show {
+    opacity: 1;
+}
+
+h1.architect-font {
+    font-size: 4rem; /* Un poco más grande */
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+/* Envelope (Hecho más grande, escalado x1.5) */
+.envelope-wrapper {
+    position: relative;
+    margin-top: 350px; /* Bajar el sobre para dar espacio a la carta que ahora sube más */
+    margin-bottom: 8rem;
+    cursor: pointer;
+    width: 450px; /* Sobre más ancho (antes 300) */
+    height: 300px; /* Sobre más alto (antes 200) */
+}
+
+.envelope {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: #4a4a4a; /* Grey envelope */
+    border-radius: 0 0 15px 15px; /* Bordes más grandes acorde al tamaño */
+    box-shadow: 0 15px 30px rgba(255,255,255,0.05);
+}
+
+.flap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 225px solid transparent; /* Mitad de 450 */
+    border-right: 225px solid transparent;
+    border-top: 150px solid #555; /* Mitad de 300 */
+    z-index: 3;
+    transform-origin: top;
+    transition: transform 0.6s ease-in-out;
+}
+
+.pocket {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 225px solid #666;
+    border-right: 225px solid #666;
+    border-bottom: 150px solid #777; /* Altura del bolsillo inferior de 150px */
+    z-index: 2;
+    border-radius: 0 0 15px 15px;
+}
+
+.letter {
+    position: absolute;
+    bottom: 5px;
+    left: 15px;
+    right: 15px;
+    height: 140px; /* Carta completamente escondida detrás del pocket de 150px */
+    background-color: #fff;
+    color: #000;
+    z-index: 1; /* Detrás del pocket */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    transition: height 0.8s ease-in-out;
+    overflow: hidden;
+    border-radius: 6px;
+}
+
+.letter-content {
+    padding: 30px;
+    padding-bottom: 165px; /* Espacio muerto para que el texto quede por encima del bolsillo de 150px */
+    font-size: 1.2rem; /* Texto de la carta más grande para acompañar el nuevo tamaño */
+    line-height: 1.5;
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Open Envelope State */
+.envelope.open .flap {
+    transform: rotateX(180deg);
+    z-index: 0;
+}
+
+.envelope.open .letter {
+    height: 650px; /* Carta mucho más alta para mostrar el texto con holgura */
+}
+
+/* Red Button Fixed to Right */
+.red-button-fixed {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    z-index: 100;
+}
+
+.red-btn {
+    background-color: #dc2626; /* Red */
+    color: white;
+    border: none;
+    padding: 1.2rem 2.5rem;
+    font-size: 1.3rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    box-shadow: 0 4px 15px rgba(220, 38, 38, 0.4);
+    transition: transform 0.1s, background-color 0.3s;
+}
+
+.red-btn:hover {
+    background-color: #b91c1c;
+}
+
+.red-btn:active {
+    transform: scale(0.95);
+}
+
+.hidden-text {
+    margin-bottom: 1rem;
+    color: #fff;
+    font-size: 1.3rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    font-family: 'Fredericka the Great', cursive;
+    background: rgba(0,0,0,0.8);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    pointer-events: none;
+}
+
+.hidden-text.show {
+    opacity: 1;
+}
+
+.hidden-img {
+    max-width: 250px;
+    max-height: 0;
+    margin-bottom: 0;
+    opacity: 0;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.hidden-img.show {
+    max-height: 400px;
+    margin-bottom: 0.5rem;
+    opacity: 1;
+}
